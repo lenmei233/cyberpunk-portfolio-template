@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            background-color: white;
+            /* Ensure the iframe has a white background */
+        }
+    </style>
+</head>
+
+<body>
+    <!DOCTYPE html>
+    <html lang="zh-CN">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Hexcore | 虚空开发者</title>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Noto+Sans+SC:wght@300;400;700&display=swap');
+
+            :root {
+                --bg-color: #0a0a0a;
+                --surface-color: #111;
+                --primary-color: #00ffff;
+                --accent-color: #ff00ff;
+                --danger-color: #ff0040;
+                --text-color: #e0e0e0;
+                --muted-text-color: #888;
+                --border-color: #333;
+            }
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                background-color: var(--bg-color);
+                color: var(--text-color);
+                font-family: 'Noto Sans SC', sans-serif;
+                line-height: 1.6;
+                overflow-x: hidden;
+                position: relative;
+            }
+
+            /* Animated Matrix-like background */
+            #matrix-bg {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                z-index: -1;
+                opacity: 0.05;
+            }
+
+            /* Glitch effect for the title */
+            .glitch-title {
+                font-family: 'Orbitron', monospace;
+                font-size: 4.5rem;
+                font-weight: 900;
+                text-transform: uppercase;
+                position: relative;
+                text-shadow:
+                    0.05em 0 0 var(--primary-color),
+                    -0.02em -0.04em 0 var(--accent-color),
+                    0.025em 0.04em 0 var(--danger-color);
+                animation: glitch-animation 2s infinite;
+            }
+
+            .glitch-title::before,
+            .glitch-title::after {
+                content: attr(data-text);
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+            }
+
+            .glitch-title::before {
+                animation: glitch-1 0.5s infinite alternate-reverse;
+                color: var(--primary-color);
+                z-index: -1;
+            }
+
+            .glitch-title::after {
+                animation: glitch-2 0.5s infinite alternate-reverse;
+                color: var(--accent-color);
+                z-index: -2;
+            }
+
+            @keyframes glitch-animation {
+                0% {
+                    text-shadow: 0.05em 0 0 var(--primary-color), -0.02em -0.04em 0 var(--accent-color), 0.025em 0.04em 0 var(--danger-color);
+                }
+
+                15% {
+                    text-shadow: 0.05em 0 0 var(--primary-color), -0.02em -0.04em 0 var(--accent-color), 0.025em 0.04em 0 var(--danger-color);
+                }
+
+                16% {
+                    text-shadow: -0.05em -0.025em 0 var(--primary-color), 0.025em 0.035em 0 var(--accent-color), -0.05em -0.05em 0 var(--danger-color);
+                }
+
+                49% {
+                    text-shadow: -0.05em -0.025em 0 var(--primary-color), 0.025em 0.035em 0 var(--accent-color), -0.05em -0.05em 0 var(--danger-color);
+                }
+
+                50% {
+                    text-shadow: 0.025em 0.05em 0 var(--primary-color), 0.05em 0 0 var(--accent-color), 0 -0.05em 0 var(--danger-color);
+                }
+
+                99% {
+                    text-shadow: 0.025em 0.05em 0 var(--primary-color), 0.05em 0 0 var(--accent-color), 0 -0.05em 0 var(--danger-color);
+                }
+            }
+
+            @keyframes glitch-1 {
+
+                0%,
+                100% {
+                    clip-path: inset(3% 0 94% 0);
+                    transform: translate(-2px, 2px);
+                }
+
+                20% {
+                    clip-path: inset(85% 0 5% 0);
+                    transform: translate(2px, -2px);
+                }
+
+                40% {
+                    clip-path: inset(45% 0 45% 0);
+                    transform: translate(-2px, 0);
+                }
+
+                60% {
+                    clip-path: inset(10% 0 85% 0);
+                    transform: translate(2px, 2px);
+                }
+
+                80% {
+                    clip-path: inset(70% 0 15% 0);
+                    transform: translate(0, -2px);
+                }
+            }
+
+            @keyframes glitch-2 {
+
+                0%,
+                100% {
+                    clip-path: inset(70% 0 15% 0);
+                    transform: translate(0, -2px);
+                }
+
+                20% {
+                    clip-path: inset(10% 0 85% 0);
+                    transform: translate(2px, 2px);
+                }
+
+                40% {
+                    clip-path: inset(45% 0 45% 0);
+                    transform: translate(-2px, 0);
+                }
+
+                60% {
+                    clip-path: inset(85% 0 5% 0);
+                    transform: translate(2px, -2px);
+                }
+
+                80% {
+                    clip-path: inset(3% 0 94% 0);
+                    transform: translate(-2px, 2px);
+                }
+            }
+
+            /* Layout */
+            .container {
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 2rem;
+            }
+
+            header {
+                text-align: center;
+                padding: 4rem 1rem;
+                border-bottom: 1px solid var(--border-color);
+                position: relative;
+            }
+
+            .subtitle {
+                font-family: 'Orbitron', monospace;
+                color: var(--muted-text-color);
+                font-size: 1rem;
+                letter-spacing: 0.3em;
+                margin-top: 1rem;
+                animation: pulse 2s infinite;
+            }
+
+            .terminal-bar {
+                background: var(--surface-color);
+                padding: 0.5rem 1rem;
+                border-top: 1px solid var(--border-color);
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                font-family: 'Courier New', Courier, monospace;
+                font-size: 0.9rem;
+            }
+
+            .terminal-bar .dot {
+                width: 12px;
+                height: 12px;
+                border-radius: 50%;
+            }
+
+            .red {
+                background-color: #ff5f56;
+            }
+
+            .yellow {
+                background-color: #ffbd2e;
+            }
+
+            .green {
+                background-color: #27c93f;
+            }
+
+            .terminal-bar .path {
+                color: var(--muted-text-color);
+                margin-left: auto;
+            }
+
+            main {
+                padding: 4rem 0;
+            }
+
+            .section-title {
+                font-family: 'Orbitron', monospace;
+                text-transform: uppercase;
+                letter-spacing: 0.1em;
+                font-size: 2rem;
+                color: var(--primary-color);
+                margin-bottom: 2rem;
+                position: relative;
+                padding-left: 1.5rem;
+            }
+
+            .section-title::before {
+                content: '>>';
+                position: absolute;
+                left: 0;
+                animation: blink 1s infinite;
+            }
+
+            @keyframes blink {
+                50% {
+                    opacity: 0;
+                }
+            }
+
+            @keyframes pulse {
+                50% {
+                    opacity: 0.7;
+                }
+            }
+
+            .project-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+                gap: 2rem;
+            }
+
+            .project-card {
+                background-color: var(--surface-color);
+                border: 1px solid var(--border-color);
+                border-radius: 8px;
+                overflow: hidden;
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                position: relative;
+                display: flex;
+                flex-direction: column;
+            }
+
+            .project-card::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: -100%;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.2), transparent);
+                transition: left 0.5s;
+            }
+
+            .project-card:hover::before {
+                left: 100%;
+            }
+
+            .project-card:hover {
+                transform: translateY(-10px);
+                border-color: var(--primary-color);
+                box-shadow: 0 0 25px rgba(0, 255, 255, 0.3);
+            }
+
+            .project-header {
+                padding: 1.5rem 1.5rem 0.5rem;
+                border-bottom: 1px dashed var(--border-color);
+            }
+
+            .project-name {
+                font-family: 'Orbitron', monospace;
+                font-size: 1.5rem;
+                color: var(--text-color);
+                margin-bottom: 0.2rem;
+            }
+
+            .project-type {
+                color: var(--accent-color);
+                font-size: 0.8rem;
+                font-weight: bold;
+                text-transform: uppercase;
+                letter-spacing: 0.1em;
+            }
+
+            .project-body {
+                padding: 1.5rem;
+                flex-grow: 1;
+            }
+
+            .tech-stack {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.5rem;
+                margin-bottom: 1rem;
+            }
+
+            .tech-tag {
+                background: rgba(0, 255, 255, 0.1);
+                border: 1px solid var(--primary-color);
+                color: var(--primary-color);
+                padding: 0.2rem 0.6rem;
+                border-radius: 4px;
+                font-family: 'Courier New', Courier, monospace;
+                font-size: 0.8rem;
+            }
+
+            .status {
+                font-family: 'Orbitron', monospace;
+                font-size: 0.8rem;
+                text-transform: uppercase;
+                margin-top: 1rem;
+            }
+
+            .status.active {
+                color: #27c93f;
+            }
+
+            .status.deprecated {
+                color: #ffbd2e;
+            }
+
+            .status.dead {
+                color: #ff5f56;
+            }
+
+            .project-footer {
+                display: flex;
+                justify-content: space-between;
+                padding: 1.5rem;
+                background: rgba(0, 0, 0, 0.2);
+            }
+
+            .project-link {
+                text-decoration: none;
+                font-family: 'Orbitron', monospace;
+                color: var(--text-color);
+                transition: color 0.3s;
+                display: inline-flex;
+                align-items: center;
+                gap: 0.5rem;
+            }
+
+            .project-link:hover {
+                color: var(--primary-color);
+                text-shadow: 0 0 5px var(--primary-color);
+            }
+        </style>
+    </head>
+
+    <body>
+
+        <!-- Matrix Background Canvas -->
+        <canvas id="matrix-bg"></canvas>
+
+        <div class="container">
+            <header>
+                <h1 class="glitch-title" data-text="Hexcore">Hexcore</h1>
+                <p class="subtitle">// INITIATING PROTOCOL: OPEN_SOURCE</p>
+            </header>
+
+            <div class="terminal-bar">
+                <div class="dot red"></div>
+                <div class="dot yellow"></div>
+                <div class="dot green"></div>
+                <span class="path">~/dev/projects</span>
+            </div>
+
+            <main>
+                <section>
+                    <h2 class="section-title">核心项目 (Core Projects)</h2>
+                    <div class="project-grid">
+                        <!-- Project 1 -->
+                        <article class="project-card">
+                            <div class="project-header">
+                                <h3 class="project-name">ShadowNet</h3>
+                                <span class="project-type">[网络安全框架]</span>
+                            </div>
+                            <div class="project-body">
+                                <p>一个基于机器学习的分布式网络入侵检测与防御系统，能够实时分析异常流量并进行自主响应。深入内核层级，捕捉最隐秘的威胁。</p>
+                                <div class="tech-stack">
+                                    <span class="tech-tag">C++</span>
+                                    <span class="tech-tag">Python</span>
+                                    <span class="tech-tag">eBPF</span>
+                                    <span class="tech-tag">TensorFlow</span>
+                                </div>
+                                <p class="status active">◆ 状态: 活跃开发中</p>
+                            </div>
+                            <div class="project-footer">
+                                <a href="#" class="project-link">查看源码 &gt;</a>
+                                <a href="#" class="project-link">在线文档 &gt;</a>
+                            </div>
+                        </article>
+
+                        <!-- Project 2 -->
+                        <article class="project-card">
+                            <div class="project-header">
+                                <h3 class="project-name">VoidEngine</h3>
+                                <span class="project-type">[Web渲染引擎]</span>
+                            </div>
+                            <div class="project-body">
+                                <p>一个实验性的、轻量级的Web渲染引擎，专注于极致的性能和对WebGPU的早期原生支持。为下一代Web应用提供动力。</p>
+                                <div class="tech-stack">
+                                    <span class="tech-tag">Rust</span>
+                                    <span class="tech-tag">JavaScript</span>
+                                    <span class="tech-tag">WebGPU</span>
+                                    <span class="tech-tag">WASM</span>
+                                </div>
+                                <p class="status active">◆ 状态: 活跃开发中</p>
+                            </div>
+                            <div class="project-footer">
+                                <a href="#" class="project-link">查看源码 &gt;</a>
+                                <a href="#" class="project-link">基准测试 &gt;</a>
+                            </div>
+                        </article>
+
+                        <!-- Project 3 -->
+                        <article class="project-card">
+                            <div class="project-header">
+                                <h3 class="project-name">Noctua</h3>
+                                <span class="project-type">[异步ORM]</span>
+                            </div>
+                            <div class="project-body">
+                                <p>为Rust生态系统设计的、类型安全的异步对象关系映射库。旨在提供强大的查询能力，同时不牺牲零成本的抽象。</p>
+                                <div class="tech-stack">
+                                    <span class="tech-tag">Rust</span>
+                                    <span class="tech-tag">SQL</span>
+                                    <span class="tech-tag">tokio</span>
+                                    <span class="tech-tag">async/await</span>
+                                </div>
+                                <p class="status deprecated">△ 状态: 维护模式</p>
+                            </div>
+                            <div class="project-footer">
+                                <a href="#" class="project-link">查看源码 &gt;</a>
+                                <a href="#" class="project-link">CRATES.IO &gt;</a>
+                            </div>
+                        </article>
+
+                        <!-- Project 4 -->
+                        <article class="project-card">
+                            <div class="project-header">
+                                <h3 class="project-name">CarbonCopy</h3>
+                                <span class="project-type">[去中心化存储]</span>
+                            </div>
+                            <div class="project-body">
+                                <p>一个基于IPFS和内容寻址的、点对点的文件同步与备份工具。你的数据，由你掌控，永不丢失。</p>
+                                <div class="tech-stack">
+                                    <span class="tech-tag">Go</span>
+                                    <span class="tech-tag">IPFS</span>
+                                    <span class="tech-tag">libp2p</span>
+                                    <span class="tech-tag">GraphQL</span>
+                                </div>
+                                <p class="status dead">✕ 状态: 已归档</p>
+                            </div>
+                            <div class="project-footer">
+                                <a href="#" class="project-link">查看源码 &gt;</a>
+                            </div>
+                        </article>
+
+                    </div>
+                </section>
+            </main>
+        </div>
+
+        <script>
+            // Matrix rain effect
+            const canvas = document.getElementById('matrix-bg');
+            const ctx = canvas.getContext('2d');
+
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+
+            const matrix = "ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789@#$%^&*()*&^%+-/~{[|`]}";
+            const matrixArray = matrix.split("");
+
+            const fontSize = 10;
+            const columns = canvas.width / fontSize;
+
+            const drops = [];
+            for (let x = 0; x < columns; x++) {
+                drops[x] = 1;
+            }
+
+            function drawMatrix() {
+                ctx.fillStyle = 'rgba(0, 0, 0, 0.04)';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                ctx.fillStyle = '#00FFFF';
+                ctx.font = fontSize + 'px monospace';
+
+                for (let i = 0; i < drops.length; i++) {
+                    const text = matrixArray[Math.floor(Math.random() * matrixArray.length)];
+                    ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+                    if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                        drops[i] = 0;
+                    }
+                    drops[i]++;
+                }
+            }
+
+            setInterval(drawMatrix, 35);
+
+            // Resize canvas on window resize
+            window.addEventListener('resize', () => {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            });
+        </script>
+
+    </body>
+
+    </html>
+
+    <script>
+
+    </script>
+</body>
+
+</html>
