@@ -126,7 +126,7 @@ If you have a suggestion that would make this better, please fork the repo and c
 ## 📜 License
 
 Distributed under the MIT License. See LICENSE for more information.
-🙏 Acknowledgments
+## 🙏 Acknowledgments
 
     Inspiration from all cyberpunk culture and minimalist design.
     The Matrix background effect is a classic frontend exercise.
