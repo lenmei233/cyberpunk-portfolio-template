@@ -2,8 +2,8 @@
 
 A super-cool, dark-themed personal portfolio template for developers. Designed for those who navigate the fine line between the digital frontier and the dark night.
 
-[![GitHub stars](https://img.shields.io/github/stars/lenmei233/REPO_NAME.svg?style=social&label=Star)](https://github.com/YOUR_USERNAME/REPO_NAME)
-[![GitHub forks](https://img.shields.io/github/forks/lenmei233/REPO_NAME.svg?style=social&label=Fork)](https://github.com/YOUR_USERNAME/REPO_NAME)
+[![GitHub stars](https://img.shields.io/github/stars/lenmei233/cyberpunk-portfolio-template.svg?style=social&label=Star)](https://github.com/YOUR_USERNAME/REPO_NAME)
+[![GitHub forks](https://img.shields.io/github/forks/lenmei233/cyberpunk-portfolio-template.svg?style=social&label=Fork)](https://github.com/YOUR_USERNAME/REPO_NAME)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 **[中文版 README](README.zh-CN.md)** | Report Bug · Request Feature
